@@ -1,0 +1,12 @@
+[Flatpak Ref]
+Title=Monero Core Wallet
+Name=org.getmonero.Wallet
+Branch=master
+Url=@URL@
+RuntimeRepo=https://distribute.kde.org/kderuntime.flatpakrepo
+IsRuntime=False
+GPGKey=@GPG@
+
+Comment=Monero Core Wallet
+Description=A wallet to keep track of your Monero assets
+Icon=https://repo.getmonero.org/uploads/group/avatar/3/monero.png
