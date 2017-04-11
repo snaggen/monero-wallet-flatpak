@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+ <id type="desktop">ettercap.desktop</id>
+ <metadata_license>CC0-1.0</metadata_license>
+ <project_license>BSD-3-Clause</project_license>
+ <name>Monero Wallet</name>
+ <summary>Wallet for the Monero crypto currency</summary>
+ <description>
+ <p>
+ Monero Wallet makes it easy to own and use the Monero crypto currency.
+ It will make it easy to send and recieve funds.
+  </p>
+ </description>
+ <screenshots>
+  <screenshot type="default" width="1280" height="804">http://monero.org/wp-content/uploads/2015/04/Monero-GUI.png</screenshot>
+ </screenshots>
+ <url type="homepage">http://getmonero.org/</url>
+ <updatecontact>dev@getmonero.org</updatecontact>
+</application>

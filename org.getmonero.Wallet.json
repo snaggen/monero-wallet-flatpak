@@ -58,18 +58,31 @@
                 }
             ]
         },
+        {
+            "name": "xmllistmodel",
+            "buildsystem": "simple",
+            "build-commands": [ "mkdir -p /app/lib/qml/QtQuick/", "mkdir /app/lib/plugins", "cp -a XmlListModel /app/lib/qml/QtQuick/"],
+            "sources": [
+                {
+                    "type": "archive",
+                    "path": "xmllistmodel.tar.gz",
+                    "sha256": "aa01576599c086c44707871557b99f4d448adf19dfea9551619d0bf4dccbd1a4"
+                }
+            ]
+        },
 
         {
-            "name": "monero-core-gui",
+            "name": "monero-core-gui2",
             "config-opts": ["-DBOOST_INCLUDEDIR=/app/include", "-DBOOST_LIBRARYDIR=/app/lib"],
             "buildsystem": "simple",
-            "build-commands": [ "./build.sh", "mkdir /app/bin/","cp -a ./build/release/bin/* /app/bin/"],
+            "build-commands": [ "./build.sh", "find /app/lib", "cd build && make deploy", "mkdir /app/bin/","cp -a ./build/release/bin/* /app/bin/"],
             "build-options": {
                 "env": {
                     "BOOST_ROOT": "/app",
                     "BOOST_INCLUDEDIR": "/app/include",
                     "BOOST_LIBRARYDIR": "/app/lib",
-                    "LIBRARY_PATH": "/app/lib/"
+                    "LIBRARY_PATH": "/app/lib/",
+                    "QT_DIR": "/app/lib/"
                 }
             },
             "sources": [
@@ -78,6 +91,29 @@
                     "url": "https://github.com/monero-project/monero-core.git"
                 }
             ]
+        },
+        {
+            "name": "extras",
+            "buildsystem": "simple",
+            "build-commands": [ "find .", "mkdir -p /app/share/app-info", "cp org.getmonero.Wallet.appdata.xml /app/share/app-info",
+                "mkdir -p /app/share/icons/hicolor/256x256/apps/", "cp org.getmonero.Wallet.png /app/share/icons/hicolor/256x256/apps/", 
+                "mkdir -p /app/share/applications/", "cp org.getmonero.Wallet.desktop /app/share/applications/"],
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "org.getmonero.Wallet.appdata.xml"
+                },
+                {
+                    "type": "file",
+                    "path": "org.getmonero.Wallet.desktop"
+                },
+                {
+                    "type": "file",
+                    "path": "org.getmonero.Wallet.png"
+                }
+            ]
         }
+
+
     ]
 }
