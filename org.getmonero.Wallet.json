@@ -13,8 +13,8 @@
         "--share=network",
 
         /* Needed for dconf to work */
-        "--filesystem=home:rw",
-        "--filesystem=host"
+        "--filesystem=home:rw"
+
     ],
     "cleanup": ["/include", "/lib/pkgconfig",
                 "/share/pkgconfig", "/share/aclocal",
@@ -75,7 +75,7 @@
             "name": "monero-core-gui2",
             "config-opts": ["-DBOOST_INCLUDEDIR=/app/include", "-DBOOST_LIBRARYDIR=/app/lib"],
             "buildsystem": "simple",
-            "build-commands": [ "./build.sh", "find /app/lib", "cd build && make deploy", "mkdir /app/bin/","cp -a ./build/release/bin/* /app/bin/"],
+            "build-commands": [ "./build.sh", "find /app/lib", "mkdir /app/bin/","cp -a ./build/release/bin/* /app/bin/"],
             "build-options": {
                 "env": {
                     "BOOST_ROOT": "/app",
@@ -95,7 +95,7 @@
         {
             "name": "extras",
             "buildsystem": "simple",
-            "build-commands": [ "find .", "mkdir -p /app/share/app-info", "cp org.getmonero.Wallet.appdata.xml /app/share/app-info",
+            "build-commands": [ "find .", "mkdir -p /app/share/appdata", "cp org.getmonero.Wallet.appdata.xml /app/share/appdata",
                 "mkdir -p /app/share/icons/hicolor/256x256/apps/", "cp org.getmonero.Wallet.png /app/share/icons/hicolor/256x256/apps/", 
                 "mkdir -p /app/share/applications/", "cp org.getmonero.Wallet.desktop /app/share/applications/"],
             "sources": [
