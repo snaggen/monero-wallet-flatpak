@@ -1,9 +1,9 @@
 {
     "app-id": "org.getmonero.Wallet",
-    "runtime": "org.kde.Platform",
-    "runtime-version": "5.9",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "1.6",
     "branch": "stable",
-    "sdk": "org.kde.Sdk",
+    "sdk": "org.freedesktop.Sdk",
     "command": "monero-wallet-gui",
     "finish-args": [
         /* X11 + XShm access */
