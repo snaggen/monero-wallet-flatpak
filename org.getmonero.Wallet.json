@@ -1,8 +1,8 @@
 {
     "app-id": "org.getmonero.Wallet",
     "runtime": "org.kde.Platform",
-    "runtime-version": "master",
-    "branch": "master",
+    "runtime-version": "5.9",
+    "branch": "stable",
     "sdk": "org.kde.Sdk",
     "command": "monero-wallet-gui",
     "finish-args": [
@@ -22,73 +22,14 @@
                 "*.la", "*.a"],
     "modules": [
         {
-            "name": "boost",
-            "config-opts": [],
-            "cleanup": [ "/lib/libboost_*.a" ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://downloads.sourceforge.net/project/boost/boost/1.60.0/boost_1_60_0.tar.bz2",
-                    "sha256": "686affff989ac2488f79a97b9479efb9f2abae035b5ed4d8226de6857933fd3b"
-                },
-                {
-                    "type": "file",
-                    "path": "boost-configure",
-                    "dest-filename": "configure"
-                }
-            ]
-        },
-        {
-            "name": "libunwind",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "http://download.savannah.nongnu.org/releases/libunwind/libunwind-1.2.tar.gz",
-                    "sha256": "1de38ffbdc88bd694d10081865871cd2bfbb02ad8ef9e1606aee18d65532b992"
-                }
-            ]
-        },
-        {
-            "name": "libunbound",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://www.unbound.net/downloads/unbound-1.6.1.tar.gz",
-                    "sha256": "42df63f743c0fe8424aeafcf003ad4b880b46c14149d696057313f5c1ef51400"
-                }
-            ]
-        },
-        {
-            "name": "xmllistmodel",
+            "name": "monero-core-gui",
             "buildsystem": "simple",
-            "build-commands": [ "mkdir -p /app/lib/qml/QtQuick/", "mkdir /app/lib/plugins", "cp -a XmlListModel /app/lib/qml/QtQuick/"],
+            "build-commands": [ "mkdir /app/lib", "mv release/bin/qml /app/lib/qml", "mv release/bin/plugins /app/lib/plugins", "mkdir /app/bin/","cp -a release/bin/* /app/bin/"], 
             "sources": [
                 {
                     "type": "archive",
-                    "path": "xmllistmodel.tar.gz",
-                    "sha256": "aa01576599c086c44707871557b99f4d448adf19dfea9551619d0bf4dccbd1a4"
-                }
-            ]
-        },
-
-        {
-            "name": "monero-core-gui2",
-            "config-opts": ["-DBOOST_INCLUDEDIR=/app/include", "-DBOOST_LIBRARYDIR=/app/lib"],
-            "buildsystem": "simple",
-            "build-commands": [ "./build.sh", "find /app/lib", "mkdir /app/bin/","cp -a ./build/release/bin/* /app/bin/"],
-            "build-options": {
-                "env": {
-                    "BOOST_ROOT": "/app",
-                    "BOOST_INCLUDEDIR": "/app/include",
-                    "BOOST_LIBRARYDIR": "/app/lib",
-                    "LIBRARY_PATH": "/app/lib/",
-                    "QT_DIR": "/app/lib/"
-                }
-            },
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/monero-project/monero-core.git"
+                    "path": "monero-core-e217203-linux-amd64.tar.gz",
+                    "sha256": "3ad82ea9004e63dc0eb3f59786686707bd14edad62c0cad89e7e6e6cbb83c1f1"
                 }
             ]
         },
@@ -113,7 +54,5 @@
                 }
             ]
         }
-
-
     ]
 }
