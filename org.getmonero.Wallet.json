@@ -24,12 +24,12 @@
         {
             "name": "monero-core-gui",
             "buildsystem": "simple",
-            "build-commands": [ "mkdir /app/lib", "mv release/bin/qml /app/lib/qml", "mv release/bin/plugins /app/lib/plugins", "mkdir /app/bin/","cp -a release/bin/* /app/bin/"], 
+            "build-commands": [ "pwd", "find .", "mkdir /app/lib", "mv monero-gui-0.11.0.0/qml /app/lib/qml", "mv monero-gui-0.11.0.0/plugins /app/lib/plugins", "mv monero-gui-0.11.0.0 /app/bin"], 
             "sources": [
                 {
                     "type": "archive",
-                    "path": "monero-core-e217203-linux-amd64.tar.gz",
-                    "sha256": "3ad82ea9004e63dc0eb3f59786686707bd14edad62c0cad89e7e6e6cbb83c1f1"
+                    "url": "https://downloads.getmonero.org/gui/monero-gui-linux-x64-v0.11.0.0.tar.bz2",
+                    "sha256": "3446f1b6487decdfe8e57a863fbfe3f2bedf043e421812674067c40928340eaa"
                 }
             ]
         },
