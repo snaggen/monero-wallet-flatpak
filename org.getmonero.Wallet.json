@@ -1,7 +1,7 @@
 {
     "app-id": "org.getmonero.Wallet",
     "runtime": "org.kde.Platform",
-    "runtime-version": "master",
+    "runtime-version": "5.9",
     "branch": "master",
     "sdk": "org.kde.Sdk",
     "command": "monero-wallet-gui",
@@ -59,23 +59,38 @@
             ]
         },
         {
-            "name": "xmllistmodel",
+            "name": "qtdeclarative",
             "buildsystem": "simple",
-            "build-commands": [ "mkdir -p /app/lib/qml/QtQuick/", "mkdir /app/lib/plugins", "cp -a XmlListModel /app/lib/qml/QtQuick/"],
+            "build-commands": [ "qmake", "make", "cp -a qml /app/lib/qml", "cp -a plugins /app/lib/plugins"],
             "sources": [
                 {
-                    "type": "archive",
-                    "path": "xmllistmodel.tar.gz",
-                    "sha256": "aa01576599c086c44707871557b99f4d448adf19dfea9551619d0bf4dccbd1a4"
+                    "type": "git",
+                    "url": "https://github.com/qt/qtdeclarative",
+                    "branch": "5.9"
                 }
             ]
         },
 
         {
-            "name": "monero-core-gui2",
+            "name": "monero-core-gui",
             "config-opts": ["-DBOOST_INCLUDEDIR=/app/include", "-DBOOST_LIBRARYDIR=/app/lib"],
+            /* Must love the name "simple */
             "buildsystem": "simple",
-            "build-commands": [ "./build.sh", "find /app/lib", "mkdir /app/bin/","cp -a ./build/release/bin/* /app/bin/"],
+            "build-commands": [ 
+                /* Seems that it gets the wrong version of the submodule, 
+                and that caused failure */
+                "pushd monero; git checkout v0.11.0.0; popd",
+
+                /* libreadline doesn't linke, so disable that */
+                "sed -i.bak -e 's/option(USE_READLINE \"Build with GNU readline support.\" ON)/option(USE_READLINE \"Build with GNU readline support.\" OFF)/g' monero/CMakeLists.txt", 
+
+                /* build.sh debug should work, but then things doesn't link, 
+                seems like libepee libwallet_merged and some more thing is not built then */
+                "./build.sh", 
+            //    "find build", 
+            //    "find /app/lib", 
+                "mkdir /app/bin/",
+                "cp -a ./build/release/bin/* /app/bin/"],
             "build-options": {
                 "env": {
                     "BOOST_ROOT": "/app",
@@ -88,7 +103,8 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://github.com/monero-project/monero-core.git"
+                    "url": "https://github.com/monero-project/monero-core.git",
+                    "tag": "v0.11.0.0"
                 }
             ]
         },
